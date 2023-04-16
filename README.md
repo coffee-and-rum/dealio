@@ -1,4 +1,4 @@
-[![Dealio](https://github.com/coffee-and-rum/dealio/assets/social_preview.jpg)](https://github.com/coffee-and-rum/dealio/assets/social_preview.jpg)
+[![Dealio](https://github.com/coffee-and-rum/dealio/blob/main/assets/social_preview.jpg)](https://github.com/coffee-and-rum/dealio/blob/main/assets/social_preview.jpg)
 # Dealio
 
 [![ci](https://github.com/coffee-and-rum/dealio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/coffee-and-rum/dealio/actions/workflows/ci.yml)
