@@ -1,14 +1,14 @@
-# %%myproject%%
+# %%dealio%%
 
-[![ci](https://github.com/%%myorg%%/%%myproject%%/actions/workflows/ci.yml/badge.svg)](https://github.com/%%myorg%%/%%myproject%%/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/%%myorg%%/%%myproject%%/branch/main/graph/badge.svg)](https://codecov.io/gh/%%myorg%%/%%myproject%%)
-[![CodeQL](https://github.com/%%myorg%%/%%myproject%%/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/%%myorg%%/%%myproject%%/actions/workflows/codeql-analysis.yml)
+[![ci](https://github.com/%%myorg%%/%%dealio%%/actions/workflows/ci.yml/badge.svg)](https://github.com/%%myorg%%/%%dealio%%/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/%%myorg%%/%%dealio%%/branch/main/graph/badge.svg)](https://codecov.io/gh/%%myorg%%/%%dealio%%)
+[![CodeQL](https://github.com/%%myorg%%/%%dealio%%/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/%%myorg%%/%%dealio%%/actions/workflows/codeql-analysis.yml)
 
 LGTM Has to be set up manually after template is created:
 
-[![Language grade: C++](https://img.shields.io/lgtm/grade/cpp/github/%%myorg%%/%%myproject%%)](https://lgtm.com/projects/g/%%myorg%%/%%myproject%%/context:cpp)
+[![Language grade: C++](https://img.shields.io/lgtm/grade/cpp/github/%%myorg%%/%%dealio%%)](https://lgtm.com/projects/g/%%myorg%%/%%dealio%%/context:cpp)
 
-## About %%myproject%%
+## About %%dealio%%
 %%description%%
 
 
