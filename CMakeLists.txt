@@ -27,6 +27,7 @@ dealio_setup_dependencies()
 
 dealio_local_options()
 
+# Adding the src:
 add_subdirectory(src)
 
 # Don't even look at tests if we're not top level
