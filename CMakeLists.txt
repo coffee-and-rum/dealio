@@ -13,7 +13,7 @@ project(
   dealio
   VERSION 0.0.1
   DESCRIPTION ""
-  HOMEPAGE_URL "%%myurl%%"
+  HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
 include(cmake/PreventInSourceBuilds.cmake)
