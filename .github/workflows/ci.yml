@@ -60,7 +60,7 @@ jobs:
         run: |
           PRESET_NAME=${{matrix.compiler}}
           PRESET_NAME=${PRESET_NAME//-*}
-          cmake --preset PRESET_NAME-${{matrix.build_type}}-mode
+          cmake --preset ${PRESET_NAME}-${{matrix.build_type}}-mode
 
       - name: Build
         run: |
