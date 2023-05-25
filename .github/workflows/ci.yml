@@ -59,19 +59,19 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake --preset ${{matrix.compiler//-*}}-${{matrix.build_type}}-mode
+          cmake --preset ${{matrix.compiler}//-*}-${{matrix.build_type}}-mode
 
       - name: Build
         run: |
-          cmake --build ./out/build/${{matrix.compiler//-*}}-${{matrix.build_type}}-mode
+          cmake --build ./out/build/${{matrix.compiler}//-*}-${{matrix.build_type}}-mode
 
       - name: Test
-        working-directory: ./out/build/${{matrix.compiler//-*}}-${{matrix.build_type}}-mode
+        working-directory: ./out/build/${{matrix.compiler}//-*}-${{matrix.build_type}}-mode
         run: |
           ctest -C ${{matrix.build_type}}
           
       - name: CPack
         if: matrix.package_generator != ''
-        working-directory: ./out/build/${{matrix.compiler//-*}}-${{matrix.build_type}}-mode
+        working-directory: ./out/build/${{matrix.compiler}//-*}-${{matrix.build_type}}-mode
         run: |
           cpack -C ${{matrix.build_type}} -G ${{matrix.package_generator}}
