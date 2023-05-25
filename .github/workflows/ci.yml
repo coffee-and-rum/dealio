@@ -3,7 +3,8 @@ on:
   push:
 
 env:
-  CLANG_TIDY_VERSION: "13.0.0"
+  CLANG_TIDY_VERSION: "15.0.2"
+  VERBOSE: 1
 
 jobs:
   Test:
@@ -12,9 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu
-          - windows
-          - macos
+          - ubuntu-20.04
+          - windows-2019
+          - macos-10.15
         compiler:
           - llvm
           - gcc
@@ -26,10 +27,8 @@ jobs:
 
         exclude:
           # mingw is determined by this author to be too buggy to support
-          - os: macos
-            compiler: gcc
-          - os: ubuntu
-            compiler: llvm
+          - os: windows-2019
+            compiler: gcc-11
 
         include:
           - os: windows
@@ -48,14 +47,21 @@ jobs:
           script: |
             core.setFailed('There is a mismatch between configured llvm compiler and clang-tidy version chosen')
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      
+      - name: Setup Cpp
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: ${{ matrix.compiler }}
+          cmake: true
+          ninja: true
+          clangtidy: ${{ env.CLANG_TIDY_VERSION }}
 
       - name: Configure CMake
         run: |
           cmake --preset ${{matrix.compiler}}-${{matrix.build_type}}-mode
 
       - name: Build
-        # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: |
           cmake --build ./out/build/${{matrix.compiler}}-${{matrix.build_type}}-mode
 
