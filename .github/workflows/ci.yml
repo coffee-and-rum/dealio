@@ -59,7 +59,9 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake --preset ${matrix.compiler//-*}-${{matrix.build_type}}-mode
+          PRESET_NAME=${{matrix.compiler}}
+          PRESET_NAME=${PRESET_NAME//-*}
+          cmake --preset PRESET_NAME-${{matrix.build_type}}-mode
 
       - name: Build
         run: |
