@@ -43,7 +43,7 @@ jobs:
         uses: actions/github-script@v6
         with: 
           script: |
-            CMAKE_PRESET=${{matrix.compiler}}
+            CMAKE_PRESET='${{matrix.compiler}}'
             echo "CMAKE_PRESET=${CMAKE_PRESET//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
           
       - name: Check env
