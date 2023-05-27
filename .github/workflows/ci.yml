@@ -30,11 +30,11 @@ jobs:
             compiler: gcc-11
 
         include:
-          - os: windows
+          - os: windows-2019
             build_type: Release
             package_generator: ZIP
 
-          - os: linux
+          - os: ubuntu-20.04
             build_type: Release
             package_generator: TAR
     env:
