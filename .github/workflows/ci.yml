@@ -3,11 +3,12 @@ on:
   push:
 
 env:
+  CLANG_VERSION: "15.0.2"
   VERBOSE: 1
 
 jobs:
   CI:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
       matrix:
@@ -16,7 +17,7 @@ jobs:
           - windows-2019
         # - macos-10.15 for as it takes too long to catch available runner
         compiler:
-          - clang-15.0.2
+          - clang-${{env.CLANG_VERSION}}
           - gcc-11
         generator:
           - "Ninja Multi-Config"
@@ -38,7 +39,7 @@ jobs:
             package_generator: TAR
       
     steps:
-      - name: Setup CMake preset env
+      - name: Setup needed variables
         run: |
           CMAKE_PRESET=${{matrix.compiler}}
           CMAKE_PRESET=${CMAKE_PRESET//-*}-${{matrix.build_type}}-mode
@@ -50,26 +51,26 @@ jobs:
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
         with:
-          compiler: ${{ matrix.compiler }}
+          compiler: ${{matrix.compiler}}
           cmake: true
           ninja: true
-          clangtidy: ${{ env.CLANG_TIDY_VERSION }}
+          clangtidy: ${{env.CLANG_VERSION}}
 
       - name: Configure CMake
         run: |
-          cmake --preset ${{env.PRESET}}
+          cmake --preset ${{env.CMAKE_PRESET}}
 
       - name: Build
         run: |
-          cmake --build --preset ${{env.PRESET}}
+          cmake --build --preset ${{env.CMAKE_PRESET}}
 
       - name: Test
-        working-directory: ./out/build/${{env.PRESET}}
+        working-directory: ./out/build/${{env.CMAKE_PRESET}}
         run: |
           ctest -C ${{matrix.build_type}}
           
       - name: CPack
         if: matrix.package_generator != ''
-        working-directory: ./out/build/${{env.PRESET}}
+        working-directory: ./out/build/${{env.CMAKE_PRESET}}
         run: |
           cpack -C ${{matrix.build_type}} -G ${{matrix.package_generator}}
