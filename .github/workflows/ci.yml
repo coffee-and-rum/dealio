@@ -64,7 +64,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build ./out/build/${matrix.compiler//-*}-${{matrix.build_type}}-mode
+          cmake --build --preset ${${{matrix.compiler}}//-*}-${{matrix.build_type}}-mode
 
       - name: Test
         working-directory: ./out/build/${matrix.compiler//-*}-${{matrix.build_type}}-mode
