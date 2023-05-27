@@ -46,6 +46,7 @@ jobs:
           echo "CMAKE_PRESET=${CMAKE_PRESET}" >> $GITHUB_ENV
           
       - name: Check env
+        run: |
           echo ${{env.CMAKE_PRESET}}
       
       - name: Setup Cpp
