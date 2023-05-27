@@ -107,51 +107,5 @@
                 "conf-gcc"
             ]
         }
-    ],
-    "testPresets": [
-        {
-            "name": "conf-test-common",
-            "description": "settings that apply to all configurations (no tests found results in error)",
-            "hidden": true,
-            "execution": {
-                "noTestsAction": "error"
-            }
-        },
-        {
-            "name": "test-msvc-debug-mode",
-            "displayName": "strict",
-            "inherits": "conf-test-common",
-            "configurePreset": "msvc-debug-mode"
-        },
-        {
-            "name": "test-msvc-release-mode",
-            "displayName": "strict",
-            "inherits": "conf-test-common",
-            "configurePreset": "msvc-release-mode"
-        },
-        {
-            "name": "test-clang-debug-mode",
-            "displayName": "strict",
-            "inherits": "conf-test-common",
-            "configurePreset": "clang-debug-mode"
-        },
-        {
-            "name": "test-clang-release-mode",
-            "displayName": "strict",
-            "inherits": "conf-test-common",
-            "configurePreset": "clang-release-mode"
-        },
-        {
-            "name": "test-gcc-debug-mode",
-            "displayName": "strict",
-            "inherits": "conf-test-common",
-            "configurePreset": "gcc-debug-mode"
-        },
-        {
-            "name": "test-gcc-release-mode",
-            "displayName": "strict",
-            "inherits": "conf-test-common",
-            "configurePreset": "gcc-release-mode"
-        }
     ]
 }

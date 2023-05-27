@@ -17,7 +17,7 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-include(Dependencies.cmake)
+include(cmake/Dependencies.cmake)
 setup_dependencies()
 
 add_subdirectory(src)
