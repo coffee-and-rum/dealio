@@ -10,6 +10,5 @@ For now, the idea is that Dealio will create deal documents based on the existin
 ### How to use Dealio  
 TODO: to do 😉
  
-### Testing
-
+### Testing  
 See [Catch2 tutorial](https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md)
