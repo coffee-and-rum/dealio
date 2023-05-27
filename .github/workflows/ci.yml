@@ -38,7 +38,7 @@ jobs:
             build_type: Release
             package_generator: TAR
     env:
-      PRESET: ${${{matrix.compiler}}//-*}
+      PRESET: ${${{matrix.compiler}}}-${{matrix.build_type}}-mode
     steps:
       - name: Check for llvm version mismatches
         if: ${{ contains(matrix.compiler, 'llvm') && !contains(matrix.compiler, env.CLANG_TIDY_VERSION) }}
@@ -59,21 +59,19 @@ jobs:
 
       - name: Configure CMake
         run: |
-          PRESET_NAME=${{matrix.compiler}}
-          PRESET_NAME=${PRESET_NAME//-*}
-          cmake --preset ${{env.PRESET}}-${{matrix.build_type}}-mode
+          cmake --preset ${{env.PRESET}}
 
       - name: Build
         run: |
-          cmake --build --preset ${${{matrix.compiler}}//-*}-${{matrix.build_type}}-mode
+          cmake --build --preset ${{env.PRESET}}
 
       - name: Test
-        working-directory: ./out/build/${matrix.compiler//-*}-${{matrix.build_type}}-mode
+        working-directory: ./out/build/${{env.PRESET}}
         run: |
           ctest -C ${{matrix.build_type}}
           
       - name: CPack
         if: matrix.package_generator != ''
-        working-directory: ./out/build/${matrix.compiler//-*}-${{matrix.build_type}}-mode
+        working-directory: ./out/build/${{env.PRESET}}
         run: |
           cpack -C ${{matrix.build_type}} -G ${{matrix.package_generator}}
