@@ -5,7 +5,7 @@
 
 ## About Dealio
 
-A project to test various programming-related things - a programmer's sandbox.
+A project to test various programming-related things - a programmer's sandbox.  
 For now, the idea is that Dealio will create deal documents based on the existing ones. Paperwork automation.
 
 ### How to use Dealio
