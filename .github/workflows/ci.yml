@@ -79,5 +79,5 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: ${{matrix.os}}-${{env.CMAKE_PRESET}}
-          path: ./out/build/${{env.CMAKE_PRESET}}/*.(zip|tar*)
+          path: ./out/build/${{env.CMAKE_PRESET}}/*.(zip|tar.bz2)
           if-no-files-found: error
