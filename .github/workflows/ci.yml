@@ -78,7 +78,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: ${{matrix.os}}-${{env.CMAKE_PRESET}}
+          name: ${{matrix.os}}-${{matrix.compiler}}-${{matrix.build_type}}
           path: |
             ./out/build/${{env.CMAKE_PRESET}}/*.tar.bz2
             ./out/build/${{env.CMAKE_PRESET}}/*.zip
