@@ -36,16 +36,13 @@ jobs:
           - os: ubuntu-20.04
             build_type: Release
             package_generator: TAR
-            
-    env:
-      CMAKE_PRESET: ""
       
     steps:
       - name: Setup CMake preset env
         run: |
           CMAKE_PRESET=${{matrix.compiler}}
           CMAKE_PRESET=${CMAKE_PRESET//-*}-${{matrix.build_type}}-mode
-          echo CMAKE_PRESET=${CMAKE_PRESET} >> $GITHUB_ENV
+          echo "CMAKE_PRESET=${CMAKE_PRESET}" >> $GITHUB_ENV
           echo ${{env.CMAKE_PRESET}}
 
       - uses: actions/checkout@v3
