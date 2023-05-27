@@ -40,12 +40,10 @@ jobs:
       
     steps:
       - name: Setup needed variables
-        uses: actions/github-script@v6
-        with: 
-          script: |
-            let compiler = "${{matrix.compiler}}";
-            compiler = compiler.split("-")[0];
-            echo "CMAKE_PRESET=compiler-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
+        shell: bash
+        run: |
+          COMPILER=${{matrix.compiler}}
+          echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
           
       - name: Check env
         run: |
