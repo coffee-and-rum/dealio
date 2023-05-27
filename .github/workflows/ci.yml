@@ -45,8 +45,6 @@ jobs:
           CMAKE_PRESET=${CMAKE_PRESET//-*}-${{matrix.build_type}}-mode
           echo "CMAKE_PRESET=${CMAKE_PRESET}" >> $GITHUB_ENV
           echo ${{env.CMAKE_PRESET}}
-
-      - uses: actions/checkout@v3
       
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
@@ -56,6 +54,9 @@ jobs:
           ninja: true
           clangtidy: ${{env.CLANG_VERSION}}
 
+      - name: Checkout
+        uses: actions/checkout@v3
+        
       - name: Configure CMake
         run: |
           cmake --preset ${{env.CMAKE_PRESET}}
