@@ -3,7 +3,10 @@ on:
   push:
 
 env:
-  CLANG_TIDY_VERSION: "15.0.2"
+  CLANG_VERSION: "15.0.2"
+  GCC_VERSION: "11"
+  WINDOWS_VERSION: "windows-2019"
+  UBUNTU_VERSION: "ubuntu-20.04"
   VERBOSE: 1
 
 jobs:
@@ -13,12 +16,12 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-20.04
-          - windows-2019
+          - $env.UBUNTU_VERSION
+          - $env.WINDOWS_VERSION
         # - macos-10.15 for as it takes too long to catch available runner
         compiler:
-          - clang-15.0.2
-          - gcc-11
+          - clang
+          - gcc
         generator:
           - "Ninja Multi-Config"
         build_type:
@@ -26,19 +29,19 @@ jobs:
 
         exclude:
           # mingw is determined by this author to be too buggy to support
-          - os: windows-2019
-            compiler: gcc-11
+          - os: $env.WINDOWS_VERSION
+            compiler: gcc
 
         include:
-          - os: windows-2019
+          - os: $env.WINDOWS_VERSION
             build_type: Release
             package_generator: ZIP
 
-          - os: ubuntu-20.04
+          - os: $env.UBUNTU_VERSION
             build_type: Release
             package_generator: TAR
     env:
-      PRESET: ${${{matrix.compiler}}//-*}-${{matrix.build_type}}-mode
+      PRESET: ${{'${{matrix.compiler}}'//-*}}-${{matrix.build_type}}-mode
     steps:
       - name: Check for llvm version mismatches
         if: ${{ contains(matrix.compiler, 'llvm') && !contains(matrix.compiler, env.CLANG_TIDY_VERSION) }}
