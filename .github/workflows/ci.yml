@@ -43,8 +43,9 @@ jobs:
     steps:
       - name: Setup CMake preset env
         run: |
-          CMAKE_PRESET=${{CMAKE_PRESET}}
+          CMAKE_PRESET=${{env.CMAKE_PRESET}}
           echo CMAKE_PRESET=${CMAKE_PRESET//-*} >> $GITHUB_ENV
+          echo ${{env.CMAKE_PRESET}}
 
       - uses: actions/checkout@v3
       
