@@ -39,7 +39,7 @@ jobs:
             package_generator: TBZ2
       
     steps:
-      - name: Setup needed variables
+      - name: Setup Variables
         shell: bash
         run: |
           COMPILER=${{matrix.compiler}}
@@ -58,7 +58,7 @@ jobs:
         
       - name: Configure CMake
         run: |
-          cmake --preset ${{env.CMAKE_PRESET}}
+          cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
 
       - name: Build
         run: |
@@ -74,3 +74,10 @@ jobs:
         working-directory: ./out/build/${{env.CMAKE_PRESET}}
         run: |
           cpack -C ${{matrix.build_type}} -G ${{matrix.package_generator}}
+          
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: ${{matrix.os}}-${{env.CMAKE_PRESET}}
+          path: ./out/build/${{env.CMAKE_PRESET}}/*.(zip|tar*)
+          if-no-files-found: error
