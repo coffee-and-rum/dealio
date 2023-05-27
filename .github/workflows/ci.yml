@@ -44,6 +44,8 @@ jobs:
           CMAKE_PRESET=${{matrix.compiler}}
           CMAKE_PRESET=${CMAKE_PRESET//-*}-${{matrix.build_type}}-mode
           echo "CMAKE_PRESET=${CMAKE_PRESET}" >> $GITHUB_ENV
+          
+      - name: Check env
           echo ${{env.CMAKE_PRESET}}
       
       - name: Setup Cpp
@@ -63,7 +65,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset ${{env.CMAKE_PRESET}}
+          cmake --build ./out/build/${{env.CMAKE_PRESET}}
 
       - name: Test
         working-directory: ./out/build/${{env.CMAKE_PRESET}}
