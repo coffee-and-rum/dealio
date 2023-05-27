@@ -44,10 +44,6 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
-          
-      - name: Check env
-        run: |
-          echo ${{env.CMAKE_PRESET}}
       
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
