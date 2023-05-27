@@ -23,17 +23,10 @@ jobs:
           - "Ninja Multi-Config"
         build_type:
           - release
-
-        exclude:
-          # mingw is determined by this author to be too buggy to support
-          - os: windows-2019
-            compiler: gcc
-
         include:
           - os: windows-2019
             build_type: Release
             package_generator: ZIP
-
           - os: ubuntu-20.04
             build_type: Release
             package_generator: TBZ2
