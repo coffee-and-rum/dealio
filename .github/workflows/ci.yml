@@ -17,7 +17,7 @@ jobs:
           - windows-2019
         # - macos-10.15 for as it takes too long to catch available runner
         compiler:
-          - clang-${{env.CLANG_VERSION}}
+          - clang-15.0.2
           - gcc-11
         generator:
           - "Ninja Multi-Config"
