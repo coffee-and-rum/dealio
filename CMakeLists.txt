@@ -24,6 +24,9 @@ add_subdirectory(src)
 
 include(CTest)
 
+install(TARGETS dealio
+        RUNTIME DESTINATION bin)
+
 set(GIT_SHA
     "Unknown"
     CACHE STRING "SHA this build was generated from")
