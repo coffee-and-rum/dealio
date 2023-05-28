@@ -30,6 +30,9 @@ jobs:
           - os: ubuntu-latest
             build_type: Release
             package_generator: TBZ2
+          - os: macos-latest
+            build_type: Release
+            package_generator: ZIP
       
     steps:
       - name: Setup Variables
