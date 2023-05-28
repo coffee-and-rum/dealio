@@ -51,7 +51,6 @@ jobs:
           echo "alias cc=/usr/local/bin/cc-${VERSION}" >> ~/.bashrc
           echo "alias c++=/usr/local/bin/c++-${VERSION}" >> ~/.bashrc
           cat ~/.bashrc
-          ~/.bashrc
           alias
           whereis g++
           whereis gcc
