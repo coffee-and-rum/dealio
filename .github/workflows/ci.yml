@@ -35,7 +35,7 @@ jobs:
             package_generator: ZIP
       
     steps:
-      - name: Setup Variables
+      - name: Setup GitHub Variables
         shell: bash
         run: |
           COMPILER=${{matrix.compiler}}
@@ -50,16 +50,17 @@ jobs:
           ninja: true
           clangtidy: ${{env.CLANG_VERSION}}
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        
-      - name: Configure CMake for MacOS and GCC
+      - name: Setup GCC for MacOS
         if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
         run: |
+          # MacOS and GCC problem described here: https://stackoverflow.com/questions/64992467/mac-clang-installation-seems-to-override-gcc-install/
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
           ln -s /usr/local/bin/g++-${VERSION} /usr/local/bin/g++
           ln -s /usr/local/bin/gcc-${VERSION} /usr/local/bin/gcc
+
+      - name: Checkout
+        uses: actions/checkout@v3
         
       - name: Configure CMake
         run: |
