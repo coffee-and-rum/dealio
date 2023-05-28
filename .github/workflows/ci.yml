@@ -48,7 +48,8 @@ jobs:
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
           export PATH=/usr/local/bin/:$PATH
-          ls -la /usr/local/bin/
+          ls -la /usr/local/bin/ | grep gcc
+          ls -la /usr/local/bin/ | grep g++
           whereis ${{matrix.compiler}}
           whereis g++
           whereis gcc
