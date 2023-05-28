@@ -55,6 +55,8 @@ jobs:
       - name: Configure CMake for MacOS and GCC
         if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
         run: |
+          COMPILER=${{matrix.compiler}}
+          VERSION=${COMPILER#*-}
           alias gcc=/usr/local/bin/gcc-${VERSION}
           alias g++=/usr/local/bin/g++-${VERSION}
           cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
