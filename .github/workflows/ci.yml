@@ -40,21 +40,6 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
-
-      - name: Setup MacOS
-        if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
-        run: |
-          COMPILER=${{matrix.compiler}}
-          VERSION=${COMPILER#*-}
-          shopt -s expand_aliases
-          echo "alias gcc=/usr/local/bin/gcc-${VERSION}" >> ~/.bashrc
-          echo "alias g++=/usr/local/bin/g++-${VERSION}" >> ~/.bashrc
-          echo "alias cc=/usr/local/bin/cc-${VERSION}" >> ~/.bashrc
-          echo "alias c++=/usr/local/bin/c++-${VERSION}" >> ~/.bashrc
-          cat ~/.bashrc
-          alias
-          whereis g++
-          whereis gcc
           
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
@@ -67,7 +52,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
+      - name: Configure CMake for MacOS and GCC
+        if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
+        run: |
+          alias gcc=/usr/local/bin/gcc-${VERSION}
+          alias g++=/usr/local/bin/g++-${VERSION}
+          cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
+        
       - name: Configure CMake
+        if: ${{!(contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc'))}}
         run: |
           cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
 
