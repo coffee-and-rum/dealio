@@ -42,6 +42,7 @@ jobs:
           echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
           
       - name: Setup Cpp
+        if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
         uses: aminya/setup-cpp@v1
         with:
           compiler: ${{matrix.compiler}}
@@ -59,10 +60,8 @@ jobs:
           VERSION=${COMPILER#*-}
           ln -s /usr/local/bin/g++-${VERSION} /usr/local/bin/g++
           ln -s /usr/local/bin/gcc-${VERSION} /usr/local/bin/gcc
-          cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
         
       - name: Configure CMake
-        if: ${{!(contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc'))}}
         run: |
           cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
 
