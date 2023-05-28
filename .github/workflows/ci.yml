@@ -57,15 +57,14 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
-          alias gcc=/usr/local/bin/gcc-${VERSION}
-          alias g++=/usr/local/bin/g++-${VERSION}
           ln -s /usr/local/bin/g++-${VERSION} /usr/local/bin/g++
           ln -s /usr/local/bin/gcc-${VERSION} /usr/local/bin/gcc
-          export PATH=/usr/local/bin/:$PATH
           cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
-
+#          alias gcc=/usr/local/bin/gcc-${VERSION}
+#          alias g++=/usr/local/bin/g++-${VERSION}
 #          alias cc=/usr/local/bin/cc-${VERSION}
 #          alias c++=/usr/local/bin/c++-${VERSION}
+#export PATH=/usr/local/bin/:$PATH
 #          alias
 
         
