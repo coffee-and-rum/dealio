@@ -51,7 +51,9 @@ jobs:
           export CMAKE_CXX_COMPILER="g++-${VERSION}"
           echo $CMAKE_C_COMPILER
           echo $CMAKE_CXX_COMPILER
-      
+          whereis $CMAKE_CXX_COMPILER
+          whereis g++
+          
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
         with:
