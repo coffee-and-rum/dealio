@@ -47,15 +47,15 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
-          export PATH=/usr/local/bin/:$PATH
+          export PATH=/usr/local/bin/:$PATH:/usr/local/bin/
           ln -s /usr/local/bin/g++-${VERSION} /usr/local/bin/g++
           ln -s /usr/local/bin/gcc-${VERSION} /usr/local/bin/gcc
+          echo $PATH
           ls -la /usr/local/bin/ | grep gcc
           ls -la /usr/local/bin/ | grep g++
           whereis ${{matrix.compiler}}
           whereis g++
           whereis gcc
-          echo $PATH
           
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
