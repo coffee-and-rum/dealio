@@ -42,7 +42,7 @@ jobs:
           echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
 
       - name: Setup MacOS
-        if: contains(matrix.os, "macos") && contains(matrix.compiler, "gcc")
+        if: ${{contains(matrix.os, "macos") && contains(matrix.compiler, "gcc")}}
         shell: bash
         run: |
           COMPILER=${{matrix.compiler}}
