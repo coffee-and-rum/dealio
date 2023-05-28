@@ -42,7 +42,6 @@ jobs:
           echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
           
       - name: Setup Cpp
-        if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
         uses: aminya/setup-cpp@v1
         with:
           compiler: ${{matrix.compiler}}
