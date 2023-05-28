@@ -50,6 +50,10 @@ jobs:
           export PATH=/usr/local/bin/:$PATH:/usr/local/bin/
           ln -s /usr/local/bin/g++-${VERSION} /usr/local/bin/g++
           ln -s /usr/local/bin/gcc-${VERSION} /usr/local/bin/gcc
+          alias gcc=/usr/local/bin/gcc-${VERSION}
+          alias g++=/usr/local/bin/g++-${VERSION}
+          alias cc=/usr/local/bin/cc-${VERSION}
+          alias c++=/usr/local/bin/c++-${VERSION}
           echo $PATH
           ls -la /usr/local/bin/ | grep gcc
           ls -la /usr/local/bin/ | grep g++
