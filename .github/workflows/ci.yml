@@ -54,8 +54,11 @@ jobs:
           whereis $CMAKE_CXX_COMPILER
           whereis g++
           export PATH=/usr/local/bin/:$PATH
+          alias g++="g++-${VERSION}"
+          alias gcc="gcc-${VERSION}"
           whereis $CMAKE_CXX_COMPILER
           whereis g++
+          whereis gcc
           
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
