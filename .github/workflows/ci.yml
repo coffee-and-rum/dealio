@@ -18,8 +18,8 @@ jobs:
           - windows-latest
           - macos-latest
         compiler:
-          - clang-${{env.CLANG_VERSION}}
-          - gcc-${{env.GCC_VERSION}}
+          - clang-${{CLANG_VERSION}}
+          - gcc-${{GCC_VERSION}}
         generator:
           - "Ninja Multi-Config"
         build_type:
@@ -46,8 +46,8 @@ jobs:
         if: contains(matrix.os, "macos") && contains(matrix.compiler, "gcc")
         shell: bash
         run: |
-          alias gcc="gcc-${{env.GCC_VERSION}}"
-          alias g++="g++-${{env.GCC_VERSION}}"
+          alias gcc="gcc-${{GCC_VERSION}}"
+          alias g++="g++-${{GCC_VERSION}}"
       
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
