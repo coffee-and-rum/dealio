@@ -47,17 +47,11 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
-          export PATH=/usr/local/bin/:$PATH:/usr/local/bin/
-          ln -s /usr/local/bin/g++-${VERSION} /usr/local/bin/g++
-          ln -s /usr/local/bin/gcc-${VERSION} /usr/local/bin/gcc
-          alias gcc=/usr/local/bin/gcc-${VERSION}
-          alias g++=/usr/local/bin/g++-${VERSION}
-          alias cc=/usr/local/bin/cc-${VERSION}
-          alias c++=/usr/local/bin/c++-${VERSION}
-          echo $PATH
-          ls -la /usr/local/bin/ | grep gcc
-          ls -la /usr/local/bin/ | grep g++
-          whereis ${{matrix.compiler}}
+          echo "alias gcc=/usr/local/bin/gcc-${VERSION} \
+          alias g++=/usr/local/bin/g++-${VERSION} \
+          alias cc=/usr/local/bin/cc-${VERSION} \
+          alias c++=/usr/local/bin/c++-${VERSION} >> ~/.bash-profile
+          cat ~/.bash-profile
           whereis g++
           whereis gcc
           
@@ -74,12 +68,6 @@ jobs:
         
       - name: Configure CMake
         run: |
-          COMPILER=${{matrix.compiler}}
-          VERSION=${COMPILER#*-}
-          alias gcc=/usr/local/bin/gcc-${VERSION}
-          alias g++=/usr/local/bin/g++-${VERSION}
-          alias cc=/usr/local/bin/cc-${VERSION}
-          alias c++=/usr/local/bin/c++-${VERSION}
           cmake --preset ${{env.CMAKE_PRESET}} -DGIT_SHA:STRING=${{ github.sha }}
 
       - name: Build
