@@ -43,7 +43,6 @@ jobs:
 
       - name: Setup MacOS
         if: ${{contains(matrix.os, 'macos') && contains(matrix.compiler, 'gcc')}}
-        shell: zsh
         run: |
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
