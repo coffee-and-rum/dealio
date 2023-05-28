@@ -48,8 +48,7 @@ jobs:
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
           export PATH=/usr/local/bin/:$PATH
-          alias g++="g++-${VERSION}"
-          alias gcc="gcc-${VERSION}"
+          ls -la /usr/local/bin/
           whereis ${{matrix.compiler}}
           whereis g++
           whereis gcc
