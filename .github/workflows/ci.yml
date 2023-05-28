@@ -47,8 +47,10 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           VERSION=${COMPILER#*-}
-          alias gcc="gcc-${VERSION}"
-          alias g++="g++-${VERSION}"
+          export CMAKE_C_COMPILER="gcc-${VERSION}"
+          export CMAKE_CXX_COMPILER="g++-${VERSION}"
+          echo $CMAKE_C_COMPILER
+          echo $CMAKE_CXX_COMPILER
       
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
