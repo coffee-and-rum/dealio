@@ -54,6 +54,8 @@ jobs:
           whereis $CMAKE_CXX_COMPILER
           whereis g++
           export PATH=/usr/local/bin/:$PATH
+          whereis $CMAKE_CXX_COMPILER
+          whereis g++
           
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
