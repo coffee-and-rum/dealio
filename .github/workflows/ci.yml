@@ -4,6 +4,7 @@ on:
 
 env:
   CLANG_VERSION: "15.0.2"
+  GCC_VERSION: "11"
   VERBOSE: 1
 
 jobs:
@@ -17,8 +18,8 @@ jobs:
           - windows-latest
           - macos-latest
         compiler:
-          - clang-15.0.2
-          - gcc-11
+          - clang-${{env.CLANG_VERSION}}
+          - gcc-${{env.GCC_VERSION}}
         generator:
           - "Ninja Multi-Config"
         build_type:
@@ -40,6 +41,13 @@ jobs:
         run: |
           COMPILER=${{matrix.compiler}}
           echo "CMAKE_PRESET=${COMPILER//-*}-${{matrix.build_type}}-mode" | tee -a $GITHUB_ENV
+
+      - name: Setup MacOS
+        if: contains(matrix.os, "macos") && contains(matrix.compiler, "gcc")
+        shell: bash
+        run: |
+          alias gcc="gcc-${{env.GCC_VERSION}}"
+          alias g++="g++-${{env.GCC_VERSION}}"
       
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
