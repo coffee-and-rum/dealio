@@ -8,7 +8,7 @@
     "configurePresets": [
         {
             "name": "conf-common",
-            "description": "general settings that apply to all configurations (targeted to release mode but ready to be overriden by debug settings)",
+            "description": "General settings that apply to all configurations (targeted to release mode but ready to be overriden by debug settings)",
             "hidden": true,
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
@@ -21,7 +21,7 @@
         },
         {
             "name": "conf-debug",
-            "description": "debug with cppcheck and clang tidy",
+            "description": "Debug with cppcheck and clang tidy",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -31,7 +31,7 @@
         },
         {
             "name": "conf-msvc",
-            "description": "msvc compiler",
+            "description": "MSVC compiler",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
@@ -40,7 +40,7 @@
         },
         {
             "name": "conf-clang",
-            "description": "clang compiler",
+            "description": "Clang compiler",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "clang",
@@ -49,7 +49,7 @@
         },
         {
             "name": "conf-gcc",
-            "description": "gcc compiler",
+            "description": "GCC compiler",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc",
