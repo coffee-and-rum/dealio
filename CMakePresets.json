@@ -14,9 +14,7 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "ENABLE_CPPCHECK": "FALSE",
-                "ENABLE_CLANG_TIDY": "FALSE"
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
             }
         },
         {
@@ -24,18 +22,7 @@
             "description": "Debug with cppcheck and clang tidy",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "ENABLE_CPPCHECK": "TRUE",
-                "ENABLE_CLANG_TIDY": "TRUE"
-            }
-        },
-        {
-            "name": "conf-msvc",
-            "description": "MSVC compiler",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl"
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
@@ -55,23 +42,6 @@
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++"
             }
-        },
-        {
-            "name": "msvc-debug-mode",
-            "displayName": "msvc debug",
-            "inherits": [
-                "conf-common",
-                "conf-msvc",
-                "conf-debug"
-            ]
-        },
-        {
-            "name": "msvc-release-mode",
-            "displayName": "msvc release",
-            "inherits": [
-                "conf-common",
-                "conf-msvc"
-            ]
         },
         {
             "name": "clang-debug-mode",
