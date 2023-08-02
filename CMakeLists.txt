@@ -17,10 +17,39 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-include(cmake/Dependencies.cmake)
-setup_dependencies()
+add_subdirectory(external)
 
 add_subdirectory(src)
+
+
+set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
+
+# make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale)
+# foreach(ff IN LISTS ffs)
+#   get_filename_component(lang ${ff} NAME_WE)
+#   make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale/${lang})
+#   make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES)
+#   add_custom_command(
+#     OUTPUT
+#       ${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES/${TEXTDOMAIN}.mo
+#     DEPENDS
+#       ${ff}
+#     COMMAND msgfmt -o
+#       ${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES/${TEXTDOMAIN}.mo
+#       ${ff}
+#   )
+#   add_custom_target(gen_${lang} ALL DEPENDS
+#     ${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES/${TEXTDOMAIN}.mo
+#   )
+#   add_test(NAME ${lang} COMMAND main)
+#   set_property(TEST ${lang} APPEND PROPERTY ENVIRONMENT
+#     TEXTDOMAINDIR=${CMAKE_CURRENT_BINARY_DIR}/locale
+#     LANGUAGE=${lang}
+#   )
+#   set_tests_properties(${lang} PROPERTIES
+#     PASS_REGULAR_EXPRESSION "${lang} foo"
+#   )
+# endforeach()
 
 include(CTest)
 
