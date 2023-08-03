@@ -17,8 +17,6 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-add_subdirectory(external)
-
 add_subdirectory(src)
 
 
@@ -54,6 +52,8 @@ set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
 include(CTest)
 
 install(TARGETS dealio RUNTIME DESTINATION bin)
+
+add_subdirectory(external)
 
 set(GIT_SHA
     "Unknown"

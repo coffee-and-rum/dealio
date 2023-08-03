@@ -1,6 +1,7 @@
 #pragma once
 
-class TestPrint
-{
-	void print();
+class TestPrint {
+public:
+  void init();
+  void print();
 };
