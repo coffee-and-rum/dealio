@@ -17,8 +17,33 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-add_subdirectory(src)
+set(GCC_COVERAGE_COMPILE_FLAGS "-s -O2 -lintl")
+set(GCC_COVERAGE_LINK_FLAGS "-lintl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
 
+set( LOCALIZATION 
+    src/main.cpp 
+    src/TestPrint.hpp 
+    src/TestPrint.cpp
+    )
+
+source_group(Localization FILES ${LOCALIZATION})
+
+add_executable(${CMAKE_PROJECT_NAME} ${LOCALIZATION})
+
+find_package(Gettext REQUIRED)
+include_directories(${GETTEXT_INCLUDE_DIR})
+if (INTL_FOUND)
+    find_package(INTL REQUIRED)
+    include_directories(${INTL_INCLUDE_DIR})
+endif()
+
+target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextlib.lib")
+target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libintl.lib")
+target_include_directories(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/include")
+message(STATUS    "gettext include"     ${GETTEXT_INCLUDE_DIR})
+message(STATUS    "intl include"     ${INTL_INCLUDE_DIR})
 
 set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
 
@@ -53,8 +78,6 @@ include(CTest)
 
 install(TARGETS dealio RUNTIME DESTINATION bin)
 
-add_subdirectory(external)
-
 set(GIT_SHA
     "Unknown"
     CACHE STRING "SHA this build was generated from")
@@ -66,7 +89,7 @@ string(
             GIT_SHORT_SHA)
 
 set(CPACK_PACKAGE_FILE_NAME
-    "${CMAKE_PROJECT_NAME}-${CMAKE_PROJECT_VERSION}-${GIT_SHORT_SHA}-${CMAKE_SYSTEM_NAME}-${CMAKE_BUILD_TYPE}-${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}"
-)
+    "${CMAKE_PROJECT_NAME}-${CMAKE_PROJECT_VERSION}-${GIT_SHORT_SHA}-${CMAKE_SYSTEM_NAME}-${CMAKE_BUILD_TYPE}-${CMAKE_CXX_COMPILER_ID}-${CMAKE_CXX_COMPILER_VERSION}
+    ")
 
 include(CPack)
