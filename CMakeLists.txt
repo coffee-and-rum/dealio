@@ -17,10 +17,8 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-set(GCC_COVERAGE_COMPILE_FLAGS "-s -O2 -lintl")
-set(GCC_COVERAGE_LINK_FLAGS "-lintl")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
+# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
 
 set( LOCALIZATION 
     src/main.cpp 
@@ -42,6 +40,8 @@ endif()
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextlib.lib")
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libintl.lib")
 target_include_directories(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/include")
+get_property(inc_dirs DIRECTORY PROPERTY INCLUDE_DIRECTORIES)
+message("inc_dirs = ${inc_dirs}")
 message(STATUS    "gettext include"     ${GETTEXT_INCLUDE_DIR})
 message(STATUS    "intl include"     ${INTL_INCLUDE_DIR})
 
