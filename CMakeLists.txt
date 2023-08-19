@@ -17,19 +17,23 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
+  set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
 find_package(Gettext REQUIRED)
 include_directories("C:/Program Files (x86)/GnuWin32/include")
 
 set(LOCALIZATION
+    src/libintl.h
     src/main.cpp
-    src/TestPrint.cpp
-    src/TestPrint.hpp
-    src/libintl.h)
+    # src/TestPrint.cpp
+    # src/TestPrint.hpp
+)
 
 source_group(Localization FILES ${LOCALIZATION})
 
 add_executable(${CMAKE_PROJECT_NAME} ${LOCALIZATION})
 
+target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libcharset.lib")
+target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libiconv.lib")
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextlib.lib")
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextpo.lib")
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextsrc.lib")
@@ -41,7 +45,6 @@ get_property(
   PROPERTY INCLUDE_DIRECTORIES)
 message("inc_dirs = ${inc_dirs}")
 
-set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
 
 # make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale)
 # foreach(ff IN LISTS ffs)
