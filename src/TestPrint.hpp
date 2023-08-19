@@ -1,7 +1,8 @@
 #pragma once
 
-class TestPrint {
+class TestPrint
+{
 public:
-  void init();
-  void print();
+	void init();
+	void print();
 };

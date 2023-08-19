@@ -17,30 +17,29 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-set( LOCALIZATION 
-    src/main.cpp 
-    src/TestPrint.hpp 
+find_package(Gettext REQUIRED)
+include_directories("C:/Program Files (x86)/GnuWin32/include")
+
+set(LOCALIZATION
+    src/main.cpp
     src/TestPrint.cpp
-    )
+    src/TestPrint.hpp
+    src/libintl.h)
 
 source_group(Localization FILES ${LOCALIZATION})
 
 add_executable(${CMAKE_PROJECT_NAME} ${LOCALIZATION})
 
-find_package(Gettext REQUIRED)
-include_directories(${GETTEXT_INCLUDE_DIR})
-if (INTL_FOUND)
-    find_package(INTL REQUIRED)
-    include_directories(${INTL_INCLUDE_DIR})
-endif()
-
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextlib.lib")
+target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextpo.lib")
+target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextsrc.lib")
 target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libintl.lib")
-target_include_directories(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/include")
-get_property(inc_dirs DIRECTORY PROPERTY INCLUDE_DIRECTORIES)
+
+get_property(
+  inc_dirs
+  DIRECTORY
+  PROPERTY INCLUDE_DIRECTORIES)
 message("inc_dirs = ${inc_dirs}")
-message(STATUS    "gettext include"     ${GETTEXT_INCLUDE_DIR})
-message(STATUS    "intl include"     ${INTL_INCLUDE_DIR})
 
 set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
 
