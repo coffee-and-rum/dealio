@@ -17,9 +17,6 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
-# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
-
 set( LOCALIZATION 
     src/main.cpp 
     src/TestPrint.hpp 
