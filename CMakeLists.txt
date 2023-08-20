@@ -17,12 +17,9 @@ project(
   HOMEPAGE_URL "https://github.com/coffee-and-rum/dealio"
   LANGUAGES CXX C)
 
-  set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
-find_package(Gettext REQUIRED)
-include_directories("C:/Program Files (x86)/GnuWin32/include")
+set(TEXTDOMAIN ${CMAKE_PROJECT_NAME})
 
 set(LOCALIZATION
-    src/libintl.h
     src/main.cpp
     # src/TestPrint.cpp
     # src/TestPrint.hpp
@@ -31,47 +28,6 @@ set(LOCALIZATION
 source_group(Localization FILES ${LOCALIZATION})
 
 add_executable(${CMAKE_PROJECT_NAME} ${LOCALIZATION})
-
-target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libcharset.lib")
-target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libiconv.lib")
-target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextlib.lib")
-target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextpo.lib")
-target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libgettextsrc.lib")
-target_link_libraries(${PROJECT_NAME} PUBLIC "C:/Program Files (x86)/GnuWin32/lib/libintl.lib")
-
-get_property(
-  inc_dirs
-  DIRECTORY
-  PROPERTY INCLUDE_DIRECTORIES)
-message("inc_dirs = ${inc_dirs}")
-
-
-# make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale)
-# foreach(ff IN LISTS ffs)
-#   get_filename_component(lang ${ff} NAME_WE)
-#   make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale/${lang})
-#   make_directory(${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES)
-#   add_custom_command(
-#     OUTPUT
-#       ${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES/${TEXTDOMAIN}.mo
-#     DEPENDS
-#       ${ff}
-#     COMMAND msgfmt -o
-#       ${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES/${TEXTDOMAIN}.mo
-#       ${ff}
-#   )
-#   add_custom_target(gen_${lang} ALL DEPENDS
-#     ${CMAKE_CURRENT_BINARY_DIR}/locale/${lang}/LC_MESSAGES/${TEXTDOMAIN}.mo
-#   )
-#   add_test(NAME ${lang} COMMAND main)
-#   set_property(TEST ${lang} APPEND PROPERTY ENVIRONMENT
-#     TEXTDOMAINDIR=${CMAKE_CURRENT_BINARY_DIR}/locale
-#     LANGUAGE=${lang}
-#   )
-#   set_tests_properties(${lang} PROPERTIES
-#     PASS_REGULAR_EXPRESSION "${lang} foo"
-#   )
-# endforeach()
 
 include(CTest)
 
